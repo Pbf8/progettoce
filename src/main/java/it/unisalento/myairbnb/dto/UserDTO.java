@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import it.unisalento.myairbnb.validators.UserDTONameConstraint;
 
 public class UserDTO {
-// polapola
+// polapola retto
 	int id;
 	@NotEmpty
 	@UserDTONameConstraint(name="pippo")
