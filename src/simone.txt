@@ -1,1 +1,2 @@
 primo push
+primo pull
