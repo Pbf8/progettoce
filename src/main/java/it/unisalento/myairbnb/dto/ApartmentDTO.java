@@ -13,9 +13,10 @@ String description;
 double price;
 float lat;
 float lon;
-int state; 
-int idseller;
-int idadmin;
+int state;
+
+SellerDTO seller;
+AdminDTO admin;
 
 
 
@@ -61,18 +62,20 @@ public int getState() {
 public void setState(int state) {
 	this.state = state;
 }
-public int getIdseller() {
-	return idseller;
+public SellerDTO getSeller() {
+	return seller;
 }
-public void setIdseller(int idseller) {
-	this.idseller = idseller;
+public void setSeller(SellerDTO seller) {
+	this.seller = seller;
 }
-public int getIdadmin() {
-	return idadmin;
+public AdminDTO getAdmin() {
+	return admin;
 }
-public void setIdadmin(int idadmin) {
-	this.idadmin = idadmin;
+public void setAdmin(AdminDTO admin) {
+	this.admin = admin;
 }
+
+
 
 
 

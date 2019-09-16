@@ -11,6 +11,33 @@ public class BookingDTO {
 	int daynumber;
 	UserDTO user;
 	
+	experienceDTO experience;
+	CarDTO car;
+	ApartmentDTO apartment;
+	
+	String paid;
+	
+	
+	public CarDTO getCar() {
+		return car;
+	}
+	public void setCar(CarDTO car) {
+		this.car = car;
+	}
+	public ApartmentDTO getApartment() {
+		return apartment;
+	}
+	public void setApartment(ApartmentDTO apartment) {
+		this.apartment = apartment;
+	}
+	public String getPaid() {
+		return paid;
+	}
+	public void setPaid(String paid) {
+		this.paid = paid;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -46,6 +73,13 @@ public class BookingDTO {
 	}
 	public void setUser(UserDTO user) {
 		this.user = user;
+	}
+	
+	public experienceDTO getExperience() {
+		return experience;
+	}
+	public void setExperience(experienceDTO experience) {
+		this.experience = experience;
 	}
 	
 	
