@@ -64,6 +64,7 @@ public class Apartment implements Serializable {
     private float lon;
     @Column(nullable=false, precision=3)
     private short state;
+    private byte[] picture;
     @OneToMany(mappedBy="apartment")
     private Set<Booking> booking;
     @ManyToOne(optional=false)
@@ -204,6 +205,24 @@ public class Apartment implements Serializable {
      */
     public void setState(short aState) {
         state = aState;
+    }
+
+    /**
+     * Access method for picture.
+     *
+     * @return the current value of picture
+     */
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    /**
+     * Setter method for picture.
+     *
+     * @param aPicture the new value for picture
+     */
+    public void setPicture(byte[] aPicture) {
+        picture = aPicture;
     }
 
     /**
