@@ -2,16 +2,20 @@ package it.unisalento.myairbnb.dto;
 
 import java.io.File;
 
+import javax.validation.constraints.NotEmpty;
+
 public class CarDTO {
 
 	
 	
 	
 	int idcar;
+	@NotEmpty
 	String plate;
+	@NotEmpty
 	String description;
 	float price;
-	File image;
+	byte[] image;
 	int seats;
 	int state;
 	
@@ -45,10 +49,10 @@ public class CarDTO {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public File getImage() {
+	public byte[] getImage() {
 		return image;
 	}
-	public void setImage(File image) {
+	public void setImage(byte[] image) {
 		this.image = image;
 	}
 	public int getSeats() {
