@@ -11,10 +11,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.unisalento.myairbnb.dto.ApartmentDTO;
 import it.unisalento.myairbnb.dto.CarDTO;
+import it.unisalento.myairbnb.dto.SellerDTO;
 import it.unisalento.myairbnb.dto.UserDTO;
+import it.unisalento.myairbnb.entities.Apartment;
 import it.unisalento.myairbnb.entities.Car;
+import it.unisalento.myairbnb.entities.Seller;
 import it.unisalento.myairbnb.entities.User;
+import it.unisalento.myairbnb.service.ApartmentService;
 import it.unisalento.myairbnb.service.CarService;
 
 @RestController
@@ -25,6 +30,9 @@ public class AdminRestController {
 
 	@Autowired
 	CarService carService;
+	
+	@Autowired
+	ApartmentService apartmentService;
 
 	
 	
@@ -55,7 +63,59 @@ public class AdminRestController {
 		return dtoList;
 	}
 	
+	
+	
+	@GetMapping(value= "/getAllApartment", produces = MediaType.APPLICATION_JSON_VALUE )
+	public List<ApartmentDTO> getAllApartment(){ //ritorna tutte le car (una lista)
+		 
+		
+		// niente più dati moke
+		List<Apartment> list = apartmentService.getAll();
+		List<ApartmentDTO> dtoList = new ArrayList<ApartmentDTO>();
+		
+		for (Apartment apartment : list) {
+			ApartmentDTO apartmentDTO = new ApartmentDTO();
+			
+			apartmentDTO.setIdapartment(apartment.getIdapartment());
+			apartmentDTO.setDescription(apartment.getDescription());
+			apartmentDTO.setPrice(apartment.getPrice());
+			apartmentDTO.setLat(apartment.getLat());
+			apartmentDTO.setLon(apartment.getLon());
+			apartmentDTO.setPicture(apartment.getPicture());
+			apartmentDTO.setState(apartment.getState());
+			
+			dtoList.add(apartmentDTO);
+			
+		}
+		
+		return dtoList;
+	}
+	
+	
+	
+	
+	@GetMapping(value= "/getAllSeller", produces = MediaType.APPLICATION_JSON_VALUE )
+	public List<SellerDTO> getAllSeller(){ //ritorna tutte le car (una lista)
+		 
+		
+		// niente più dati moke
+		List<Seller> list = apartmentService.getAllSeller();
+		List<SellerDTO> dtoList = new ArrayList<SellerDTO>();
+		
+		for (Seller seller: list) {
+			SellerDTO sellerDTO = new SellerDTO();
+			
+			sellerDTO.setName(seller.getName());
+			sellerDTO.setSurname(seller.getSurname());
 
+			
+			dtoList.add(sellerDTO);
+			
+		}
+		
+		return dtoList;
+	}
+	
 	
 	
 }

@@ -14,7 +14,14 @@ double price;
 float lat;
 float lon;
 int state;
+byte[] picture;
 
+public byte[] getPicture() {
+	return picture;
+}
+public void setPicture(byte[] picture) {
+	this.picture = picture;
+}
 SellerDTO seller;
 AdminDTO admin;
 
