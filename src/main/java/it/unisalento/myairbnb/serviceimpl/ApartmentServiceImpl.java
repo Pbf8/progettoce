@@ -58,7 +58,7 @@ public class ApartmentServiceImpl implements ApartmentService {
 	@Override
 	public List<Apartment> getByState(int state) {
 		// TODO Auto-generated method stub
-		return null;
+		return apartmentRepository.findByState( state);
 	}
 
 

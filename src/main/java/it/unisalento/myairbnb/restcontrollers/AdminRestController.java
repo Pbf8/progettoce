@@ -1,13 +1,17 @@
 package it.unisalento.myairbnb.restcontrollers;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +38,8 @@ public class AdminRestController {
 	@Autowired
 	ApartmentService apartmentService;
 
-	
+	List<SellerDTO> dtoSellerList = new ArrayList<SellerDTO>();
+
 	
 	@GetMapping(value= "/getAllCar", produces = MediaType.APPLICATION_JSON_VALUE )
 	public List<CarDTO> getAllCar(){ //ritorna tutte le car (una lista)
@@ -68,14 +73,20 @@ public class AdminRestController {
 	@GetMapping(value= "/getAllApartment", produces = MediaType.APPLICATION_JSON_VALUE )
 	public List<ApartmentDTO> getAllApartment(){ //ritorna tutte le car (una lista)
 		 
-		
+		dtoSellerList = getAllSeller();
 		// niente più dati moke
 		List<Apartment> list = apartmentService.getAll();
 		List<ApartmentDTO> dtoList = new ArrayList<ApartmentDTO>();
-		
+		int i=0;
 		for (Apartment apartment : list) {
-			ApartmentDTO apartmentDTO = new ApartmentDTO();
 			
+			
+			SellerDTO sellerDTO = new SellerDTO();
+			sellerDTO =(dtoSellerList.get(i));
+			//sellerDTO.setSurname(apartment.getSurname());
+
+			ApartmentDTO apartmentDTO = new ApartmentDTO();
+
 			apartmentDTO.setIdapartment(apartment.getIdapartment());
 			apartmentDTO.setDescription(apartment.getDescription());
 			apartmentDTO.setPrice(apartment.getPrice());
@@ -83,8 +94,43 @@ public class AdminRestController {
 			apartmentDTO.setLon(apartment.getLon());
 			apartmentDTO.setPicture(apartment.getPicture());
 			apartmentDTO.setState(apartment.getState());
-			
+			apartmentDTO.setSeller(sellerDTO);
 			dtoList.add(apartmentDTO);
+			i=i+1;
+			
+		}
+		
+		return dtoList;
+	}
+	
+	
+	@GetMapping(value= "/getAllApartmentNotApproved", produces = MediaType.APPLICATION_JSON_VALUE )
+	public List<ApartmentDTO> getAllApartmentNotApproved(){ //ritorna tutte le car (una lista)
+		 
+		dtoSellerList = getAllSeller();
+		// niente più dati moke
+		List<Apartment> list = apartmentService.getByState(0);
+		List<ApartmentDTO> dtoList = new ArrayList<ApartmentDTO>();
+		int i=0;
+		for (Apartment apartment : list) {
+			
+			
+			SellerDTO sellerDTO = new SellerDTO();
+			sellerDTO =(dtoSellerList.get(i));
+			//sellerDTO.setSurname(apartment.getSurname());
+
+			ApartmentDTO apartmentDTO = new ApartmentDTO();
+
+			apartmentDTO.setIdapartment(apartment.getIdapartment());
+			apartmentDTO.setDescription(apartment.getDescription());
+			apartmentDTO.setPrice(apartment.getPrice());
+			apartmentDTO.setLat(apartment.getLat());
+			apartmentDTO.setLon(apartment.getLon());
+			apartmentDTO.setPicture(apartment.getPicture());
+			apartmentDTO.setState(apartment.getState());
+			apartmentDTO.setSeller(sellerDTO);
+			dtoList.add(apartmentDTO);
+			i=i+1;
 			
 		}
 		
@@ -100,22 +146,26 @@ public class AdminRestController {
 		
 		// niente più dati moke
 		List<Seller> list = apartmentService.getAllSeller();
-		List<SellerDTO> dtoList = new ArrayList<SellerDTO>();
 		
 		for (Seller seller: list) {
 			SellerDTO sellerDTO = new SellerDTO();
-			
+			sellerDTO.setIdseller(seller.getIdseller());
 			sellerDTO.setName(seller.getName());
 			sellerDTO.setSurname(seller.getSurname());
 
 			
-			dtoList.add(sellerDTO);
+			dtoSellerList.add(sellerDTO);
 			
 		}
 		
-		return dtoList;
+		return dtoSellerList;
 	}
 	
 	
+	
+	
+	
+	
+
 	
 }

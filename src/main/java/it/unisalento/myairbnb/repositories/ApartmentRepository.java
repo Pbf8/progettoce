@@ -23,5 +23,13 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Integer> {
 	
 	@Query("select s from Seller s inner join s.apartment a ") //Jquery
 	public List<Seller> findByIdsellerUsingQuery();
+	
+	
+	public List<Apartment> findByState(int state)	;
+	
+//public List<Apartment> findByState (short state); // possiamo anche ordinare i risultati
+	
+	//@Query("select a from Apartment a where a.state=: state")   //se vogliamo usare una certa query personalizzata
+	//public List<Apartment> findByStateUsingQuery(@Param("state") int state);  // il nome della query deve essere il parametro di questa funzione
 }
 //scrive nel db

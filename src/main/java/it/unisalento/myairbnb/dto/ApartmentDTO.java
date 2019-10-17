@@ -2,6 +2,8 @@ package it.unisalento.myairbnb.dto;
 
 import java.util.Date;
 
+import it.unisalento.myairbnb.entities.Seller;
+
 public class ApartmentDTO {
 
 
@@ -23,6 +25,8 @@ public void setPicture(byte[] picture) {
 	this.picture = picture;
 }
 SellerDTO seller;
+
+
 AdminDTO admin;
 
 
@@ -72,14 +76,18 @@ public void setState(int state) {
 public SellerDTO getSeller() {
 	return seller;
 }
-public void setSeller(SellerDTO seller) {
-	this.seller = seller;
-}
+//public void setSeller(SellerDTO seller) {
+//	this.seller = seller;
+//}
 public AdminDTO getAdmin() {
 	return admin;
 }
 public void setAdmin(AdminDTO admin) {
 	this.admin = admin;
+}
+public void setSeller(SellerDTO seller) {
+	// TODO Auto-generated method stub
+	this.seller= seller;
 }
 
 
