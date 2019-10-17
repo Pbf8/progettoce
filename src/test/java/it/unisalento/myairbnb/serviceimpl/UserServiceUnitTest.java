@@ -17,37 +17,43 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import it.unisalento.myairbnb.entities.User;
 import it.unisalento.myairbnb.service.UserService;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
+@ExtendWith(MockitoExtension.class) // abilita mockito
+@SpringBootTest        // avvia applicazione come test (importante!!)
+
+
 public class UserServiceUnitTest {
 	
-	@Mock
-	private UserService userServiceMock;
+	@Mock    // se uso autowired creo istanza reale (scrivo veramente nel DB)
+	private  UserService userServiceMock;  // contenuto salvato da UserService non viene salvato nel db ma come mock
+	
 	
 	private User user;
 	
-	
 	@BeforeEach
-	private void setUp() {
+	private void Setup() {     //aggiunto dopo
 		
 		user = new User();
-		 
-		user.setName("prova_name");
-		user.setSurname("prova_surname");
-		user.setEmail("prova_eddmail@email.com");
-		
+		user.setName("prova name");           //pre condizioni test
+		user.setSurname("prova surname");
+		user.setEmail("proba@email.com");
 	}
+	
 	
 	@Test
-	public void saveUserTest() {
-			
-		when(userServiceMock.save(user)).thenReturn(user);
+	public void saveUserTest() {  //testiamo metodo test della classe userService
 		
-		int id = userServiceMock.save(user).getIduser();
+		//User user = new User();
+		  
 		
-		assertThat(id).isNotNull();
+		
+		when(userServiceMock.saveOrUpdate(user)).thenReturn(user);   //quando viene chiamato il metodo save della classe mock ritornami un valore
+
+		int id = userServiceMock.saveOrUpdate(user).getIduser(); // effettua chiamata e vedi l'id
+		
+		assertThat(id).isNotNull();  // condizione da verificare per superare il test
+		
+		
 		
 	}
-	
 
 }
