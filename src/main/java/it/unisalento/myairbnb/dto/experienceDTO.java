@@ -9,7 +9,7 @@ public class experienceDTO {
 	int idexperience;
 	String title;
 	String description;
-	File picture;
+	byte[] picture;
 	float price;
 	double lat;
 	double lon;
@@ -40,10 +40,10 @@ public class experienceDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public File getPicture() {
+	public byte[] getPicture() {
 		return picture;
 	}
-	public void setPicture(File picture) {
+	public void setPicture(byte[] picture) {
 		this.picture = picture;
 	}
 	public float getPrice() {

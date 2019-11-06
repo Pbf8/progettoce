@@ -19,12 +19,15 @@ import it.unisalento.myairbnb.dto.ApartmentDTO;
 import it.unisalento.myairbnb.dto.CarDTO;
 import it.unisalento.myairbnb.dto.SellerDTO;
 import it.unisalento.myairbnb.dto.UserDTO;
+import it.unisalento.myairbnb.dto.experienceDTO;
 import it.unisalento.myairbnb.entities.Apartment;
 import it.unisalento.myairbnb.entities.Car;
+import it.unisalento.myairbnb.entities.Experience;
 import it.unisalento.myairbnb.entities.Seller;
 import it.unisalento.myairbnb.entities.User;
 import it.unisalento.myairbnb.service.ApartmentService;
 import it.unisalento.myairbnb.service.CarService;
+import it.unisalento.myairbnb.service.ExperienceService;
 
 @RestController
 @RequestMapping("/admin")
@@ -37,6 +40,9 @@ public class AdminRestController {
 	
 	@Autowired
 	ApartmentService apartmentService;
+	
+	@Autowired
+	ExperienceService experienceService;
 
 	List<SellerDTO> dtoSellerList = new ArrayList<SellerDTO>();
 
@@ -160,6 +166,33 @@ public class AdminRestController {
 		
 		return dtoSellerList;
 	}
+	
+	@GetMapping(value= "/getAllExperience", produces = MediaType.APPLICATION_JSON_VALUE )
+	public List<experienceDTO> getAllExperience(){ //ritorna tutte le experience (una lista)
+		 
+		
+		// niente più dati moke
+		List<Experience> list = experienceService.getAll();
+		List<experienceDTO> dtoList = new ArrayList<experienceDTO>();
+		
+		for (Experience experience : list) {
+			experienceDTO experienceDTO= new experienceDTO();
+			
+			experienceDTO.setIdexperience(experience.getIdexperience());
+			experienceDTO.setDescription(experience.getDescription());
+			experienceDTO.setPrice(experience.getPrice());
+		
+			experienceDTO.setPicture(experience.getPicture());
+			
+			experienceDTO.setState(experience.getState());
+			
+			dtoList.add(experienceDTO);
+			
+		}
+		
+		return dtoList;
+	}
+	
 	
 	
 	

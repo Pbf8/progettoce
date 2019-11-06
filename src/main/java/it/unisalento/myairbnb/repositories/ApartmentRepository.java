@@ -21,7 +21,7 @@ public interface ApartmentRepository extends JpaRepository<Apartment, Integer> {
 	//classe entities il secondo il tipo della chiave primaria
 	// il nome del metodo definisce la qury da effettuare
 	
-	@Query("select s from Seller s inner join s.apartment a ") //Jquery
+	@Query("select s from seller s inner join s.apartment a ") //Jquery
 	public List<Seller> findByIdsellerUsingQuery();
 	
 	

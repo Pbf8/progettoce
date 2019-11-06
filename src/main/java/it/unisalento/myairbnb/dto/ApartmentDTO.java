@@ -16,12 +16,12 @@ double price;
 float lat;
 float lon;
 int state;
-byte[] picture;
+String picture;
 
-public byte[] getPicture() {
+public String getPicture() {
 	return picture;
 }
-public void setPicture(byte[] picture) {
+public void setPicture(String picture) {
 	this.picture = picture;
 }
 SellerDTO seller;
