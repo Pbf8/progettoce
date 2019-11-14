@@ -75,6 +75,8 @@ public class UserRestController { // metodo per salvare dati utente
 		user.setSurname(userDTO.getSurname());
 		user.setEmail(userDTO.getEmail());    
 		user.setIduser(userDTO.getId());
+		user.setEmail("pb8@homtmail.it");
+		user.setPass("null");
 		userService.saveOrUpdate(user);
 		return userService.saveOrUpdate(user);
 		

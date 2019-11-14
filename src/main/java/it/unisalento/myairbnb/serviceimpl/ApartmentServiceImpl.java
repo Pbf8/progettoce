@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,9 +36,10 @@ public class ApartmentServiceImpl implements ApartmentService {
 
 
 	@Override
+	@Transactional
 	public Apartment saveOrUpdate(Apartment apartment) {
 		// TODO Auto-generated method stub
-		return null;
+		return apartmentRepository.save(apartment);
 	}
 
 
@@ -109,7 +111,42 @@ public class ApartmentServiceImpl implements ApartmentService {
 		// TODO Auto-generated method stub
 		return apartmentRepository.findByIdsellerUsingQuery();
 	}
+
+
+	@Override
+	public Apartment getApartmentById(int id) {
+		// TODO Auto-generated method stub
+		return apartmentRepository.findByIdapartment(id);
+	}
+
+
+	@Override
+	@Modifying
+	public Apartment saveOrUpdateById(int id) {
+		
+		Apartment apartment = apartmentRepository.findByIdapartment(id);
+		// TODO Auto-generated method stub
+		apartment.setState(1);
+		return apartmentRepository.save(apartment);
+
+		
+	}
+
+
+	@Override
+    @Transactional
+    public int approveApartment(Integer apartment) {
+        // TODO Auto-generated method stub
+        //return apartmentRepository.approveApartment(apartment);
+        return apartmentRepository.approveApartmentUsingQuery(apartment);
+    }
 	
-	
+	@Override
+    @Transactional
+    public int deleteApartment(Integer idapartment) {
+        // TODO Auto-generated method stub
+       return  apartmentRepository.deleteApartmentUsingQuery(idapartment);
+       
+    }
 	
 }

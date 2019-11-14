@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import it.unisalento.myairbnb.entities.Altro;
 import it.unisalento.myairbnb.entities.Apartment;
 import it.unisalento.myairbnb.entities.Booking;
 import it.unisalento.myairbnb.entities.Car;
@@ -12,35 +13,31 @@ import it.unisalento.myairbnb.entities.Seller;
 import it.unisalento.myairbnb.entities.User;
 import it.unisalento.myairbnb.exceptions.UserNotFoundException;
 
-public interface ApartmentService {  
+public interface OtherService {  
 	
 	//  interfaccia , disaccoppia restcontroller da oggetti di persistenza
 	// nei restcontroller compare dipendenz da interfaccia e non da servizio, per cui eventuali modifiche al servizio
 	//non intaccano direttamente i restcontroller
 	
-	public Apartment saveOrUpdate(Apartment apartment);
+	public Altro saveOrUpdate(Altro other);
 	
-	public List<Apartment> getAll();  // metodi per avere diverse informaziono sull'appartamento in base a diversi input
+	public List<Altro> getAll();  // metodi per avere diverse informaziono sull'appartamento in base a diversi input
 	
-	public Apartment getApartmentById(int id);
 	
-	public Apartment saveOrUpdateById(int id);
 	
-	public int approveApartment(Integer apartment);
-
+	public List<Altro> getByPrice(float price); 	
 	
-	public List<Apartment> getByPrice(float price); 	
-	
-	public List<Apartment> getByPosition(float lat, float lon);   // metodi user
+	public List<Altro> getByPosition(float lat, float lon);   // metodi user
 	
 	
   
 	public List<Seller> getAllSeller();
 
-	public List<Apartment> getByState(int state); 	 // metodo admin
-	public int deleteApartment(Integer id);
-	
-	public List<Booking> getAllBooking(Apartment apartment); 	  // metodo seller
+	public List<Altro> getByState(int state); 	 // metodo admin
+	public List<Altro> getByCategory(String category);
+	public List<Altro> getByCategoryid(String name);
+
+	public List<Booking> getAllBooking(Altro other); 	  // metodo seller
 
 	
 
